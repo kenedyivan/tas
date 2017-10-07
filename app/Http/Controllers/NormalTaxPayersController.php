@@ -29,4 +29,12 @@ class NormalTaxPayersController extends Controller
         return "change the wexy function";
     }
 
+    function joshuakally(){
+        return "just a joshua kally function";
+    }
+
+    function kall_auth(){
+        return "just a kall auth function";
+    }
+
 }
