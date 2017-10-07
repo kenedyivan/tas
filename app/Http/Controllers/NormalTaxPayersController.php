@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class NormalTaxPayersController extends Controller
 {
+    function top(){
+        return "This is the top function";
+    }
     function index(){
         return "This is the index";
     }
