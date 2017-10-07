@@ -15,7 +15,7 @@ class NormalTaxPayersController extends Controller
     }
 
     function joshua(){
-        return "Hey Joshua";
+        return "Hey kall";
     }
 
     function akena(){
@@ -25,4 +25,5 @@ class NormalTaxPayersController extends Controller
     function wexy(){
         return "Hey wexy";
     }
+
 }
