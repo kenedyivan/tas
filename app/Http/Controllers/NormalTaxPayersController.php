@@ -25,8 +25,8 @@ class NormalTaxPayersController extends Controller
         return "Hey akena";
     }
 
-    function wexy(){
-        return "Hey wexy";
+    function okelloseggs(){
+        return "change the wexy function";
     }
 
 }
