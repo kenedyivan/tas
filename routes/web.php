@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/part1/{gross_turnover}', "PresumptiveTaxPayersController@part1");

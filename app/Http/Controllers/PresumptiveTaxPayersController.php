@@ -6,9 +6,47 @@ use Illuminate\Http\Request;
 
 class PresumptiveTaxPayersController extends Controller
 {
+    public $RANGE1 = 937500; //ABOVE 50M BUT LESS THAN 75M
+    public $RANGE2 = 1312500; //ABOVE 75M BUT LESS THAN 100M
+    public $RANGE3 = 1687500; //ABOVE 100M BUT LESS THAN 125M
+    public $RANGE4 = 2062500; //ABOVE 125M BUT LESS THAN 150M
+
+    public $tax_rate = 0.015; //TAX RATE
+
     //
-    function newFunc()
+
+    function part1($gross_turnover)
     {
-        return "new function";
+
+        switch ($gross_turnover) {
+            case $gross_turnover > 50000000 && $gross_turnover <= 75000000:
+                echo $this->taxReturns($gross_turnover, $this->RANGE1);
+                //echo "i reached";
+                break;
+            case $gross_turnover > 75000000 && $gross_turnover <= 100000000:
+                echo $this->taxReturns($gross_turnover, $this->RANGE2);
+                break;
+            case $gross_turnover > 100000000 && $gross_turnover <= 125000000:
+                echo $this->taxReturns($gross_turnover, $this->RANGE3);
+                break;
+            case $gross_turnover > 125000000 && $gross_turnover <= 150000000:
+                echo $this->taxReturns($gross_turnover, $this->RANGE4);
+                break;
+            default:
+                echo "You don't qualify for this package range";
+        }
+
+    }
+
+    function taxReturns($gross_turnover, $range)
+    {
+        //echo "tax payable";
+        $tax_payable = $gross_turnover * $this->tax_rate;
+        //echo $tax_payable;
+        if ($tax_payable > $range) {
+            return $range;
+        } else {
+            return $tax_payable;
+        }
     }
 }
