@@ -10,4 +10,8 @@ class NormalTaxPayersController extends Controller
     {
         return "Normal tax payer controller";
     }
+
+    function helloWorld(){
+        return "Howdy world";
+    }
 }
