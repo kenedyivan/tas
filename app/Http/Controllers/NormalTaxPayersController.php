@@ -17,4 +17,12 @@ class NormalTaxPayersController extends Controller
     function joshua(){
         return "Hey Joshua";
     }
+
+    function akena(){
+        return "Hey akena";
+    }
+
+    function wexy(){
+        return "Hey wexy";
+    }
 }
