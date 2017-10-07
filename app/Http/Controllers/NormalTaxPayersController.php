@@ -9,5 +9,6 @@ class NormalTaxPayersController extends Controller
     function index()
     {
         return "this is the index";
+        gjh
     }
 }
