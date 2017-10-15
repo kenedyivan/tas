@@ -58,5 +58,5 @@ class PresumptiveTaxPayersController extends Controller
         }
     }
 
-    
+
 }
