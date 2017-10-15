@@ -13,24 +13,30 @@ class PresumptiveTaxPayersController extends Controller
 
     public $tax_rate = 0.015; //TAX RATE
 
+    public $LOCATION1 = "Kampala City and Divisions of Kampala";
+    public $LOCATION2 = "Municipalities";
+    public $LOCATION3 = "Towns and Trading Centres";
+
+
+
     //
 
-    function part1($gross_turnover)
+    function part1($gross_turnover, $credit_tax)
     {
 
         switch ($gross_turnover) {
             case $gross_turnover > 50000000 && $gross_turnover <= 75000000:
-                echo $this->taxReturns($gross_turnover, $this->RANGE1);
+                echo $this->taxReturnsPart1($gross_turnover, $this->RANGE1, $credit_tax);
                 //echo "i reached";
                 break;
             case $gross_turnover > 75000000 && $gross_turnover <= 100000000:
-                echo $this->taxReturns($gross_turnover, $this->RANGE2);
+                echo $this->taxReturnsPart1($gross_turnover, $this->RANGE2, $credit_tax);
                 break;
             case $gross_turnover > 100000000 && $gross_turnover <= 125000000:
-                echo $this->taxReturns($gross_turnover, $this->RANGE3);
+                echo $this->taxReturnsPart1($gross_turnover, $this->RANGE3, $credit_tax);
                 break;
             case $gross_turnover > 125000000 && $gross_turnover <= 150000000:
-                echo $this->taxReturns($gross_turnover, $this->RANGE4);
+                echo $this->taxReturnsPart1($gross_turnover, $this->RANGE4, $credit_tax);
                 break;
             default:
                 echo "You don't qualify for this package range";
@@ -38,15 +44,19 @@ class PresumptiveTaxPayersController extends Controller
 
     }
 
-    function taxReturns($gross_turnover, $range)
+    function taxReturnsPart1($gross_turnover, $range, $credit_tax)
     {
         //echo "tax payable";
         $tax_payable = $gross_turnover * $this->tax_rate;
         //echo $tax_payable;
         if ($tax_payable > $range) {
-            return $range;
+            if ($credit_tax>0)
+            return $range-$credit_tax;
         } else {
-            return $tax_payable;
+            if ($credit_tax>0)
+            return $tax_payable-$credit_tax;
         }
     }
+
+
 }
