@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','Auth\LoginController@showLoginForm')->name('login.form');
+
+Route::post('/', 'Auth\LoginController@login')->name('login');
+
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/part1/{gross_turnover}', "PresumptiveTaxPayersController@part1");
 
@@ -25,3 +27,8 @@ Route::get('/towns-and-trading-centers/{gross_turnover}/{business_type}', "Presu
 
 Route::get('/part3/{monthly_salary}', "NormalTaxPayersController@salaryTax");
 
+
+//Auth::routes();
+
+
+Route::get('/home', 'HomeController@index')->name('home');
