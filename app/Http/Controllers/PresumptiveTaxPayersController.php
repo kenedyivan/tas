@@ -13,8 +13,11 @@ class PresumptiveTaxPayersController extends Controller
 
     public $tax_rate = 0.015; //TAX RATE
 
-    //
+    public $error = "";
 
+
+    /*The amount of tax payable for purposes of Section 4(5)
+    where the gross turnover is more than fifty million shillings*/
     function part1($gross_turnover)
     {
 
@@ -49,4 +52,575 @@ class PresumptiveTaxPayersController extends Controller
             return $tax_payable;
         }
     }
+
+    /*The amount of tax payable for purposes of section 4(5)
+    where the gross turnover is less than fifty million shillings*/
+
+    //Kampala city and divisions of Kampala
+    function cityAndDivisions($gross_turnover, $business_type)
+    {
+
+        echo $this->cityAndDivisionsTaxReturns($gross_turnover, $business_type);
+
+    }
+
+    function cityAndDivisionsTaxReturns($gross_turnover, $business_type)
+    {
+
+        define("GENERAL_TRADE", "gt");
+        define("CARPENTRY_OR_METAL", "cm");
+        define("GARAGES", "g");
+        define("HAIR_AND_BEAUTY_SALONS", "hb");
+        define("RESTAURANTS", "r");
+        define("CLINICS", "c");
+        define("DRUG_SHOPS", "ds");
+
+        $tax_payable = null;
+
+        if ($business_type == GENERAL_TRADE) { //General trade
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 500000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 400000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 250000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == CARPENTRY_OR_METAL) { //Capentry and metal
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 500000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 400000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 250000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == GARAGES) {  //Motor vehicle repair
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 550000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 450000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 300000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == HAIR_AND_BEAUTY_SALONS) {  //Hair and beauty salons
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 550000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 400000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 300000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == RESTAURANTS) {  //Resaurants
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 550000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 450000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 300000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == CLINICS) {  //Clinics
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 550000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 450000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 300000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == DRUG_SHOPS) {  //Drag shops
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 500000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 350000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 250000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type != GENERAL_TRADE || CARPENTRY_OR_METAL ||
+            GARAGES || HAIR_AND_BEAUTY_SALONS || RESTAURANTS || CLINICS || DRUG_SHOPS
+        ) {  //Others
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 450000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 300000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 200000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        }
+
+        return $tax_payable;
+    }
+
+
+    //Municipalities
+    function municipalities($gross_turnover, $business_type)
+    {
+
+        echo $this->municipalitiesTaxReturns($gross_turnover, $business_type);
+
+    }
+
+    function municipalitiesTaxReturns($gross_turnover, $business_type)
+    {
+
+        define("GENERAL_TRADE", "gt");
+        define("CARPENTRY_OR_METAL", "cm");
+        define("GARAGES", "g");
+        define("HAIR_AND_BEAUTY_SALONS", "hb");
+        define("RESTAURANTS", "r");
+        define("CLINICS", "c");
+        define("DRUG_SHOPS", "ds");
+
+        $tax_payable = null;
+
+        if ($business_type == GENERAL_TRADE) { //General trade
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 400000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 300000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 150000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == CARPENTRY_OR_METAL) { //Capentry and metal
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 400000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 300000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 150000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == GARAGES) {  //Motor vehicle repair
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 450000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 350000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 200000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == HAIR_AND_BEAUTY_SALONS) {  //Hair and beauty salons
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 550000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 350000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 200000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == RESTAURANTS) {  //Resaurants
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 450000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 350000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 200000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == CLINICS) {  //Clinics
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 450000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 350000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 200000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == DRUG_SHOPS) {  //Drag shops
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 400000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 300000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 150000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type != GENERAL_TRADE || CARPENTRY_OR_METAL ||
+            GARAGES || HAIR_AND_BEAUTY_SALONS || RESTAURANTS || CLINICS || DRUG_SHOPS
+        ) {  //Others
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 400000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 350000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 150000;
+
+            } else {
+
+                $tax_payable = $this->error;
+            }
+
+        }
+
+        return $tax_payable;
+    }
+
+    //End municipalities
+
+    //Towns and trading centers
+    function townsAndTradingCenters($gross_turnover, $business_type)
+    {
+
+        echo $this->townsAndTradingCentersTaxReturns($gross_turnover, $business_type);
+
+    }
+
+    function townsAndTradingCentersTaxReturns($gross_turnover, $business_type)
+    {
+
+        define("GENERAL_TRADE", "gt");
+        define("CARPENTRY_OR_METAL", "cm");
+        define("GARAGES", "g");
+        define("HAIR_AND_BEAUTY_SALONS", "hb");
+        define("RESTAURANTS", "r");
+        define("CLINICS", "c");
+        define("DRUG_SHOPS", "ds");
+
+        $tax_payable = null;
+
+        if ($business_type == GENERAL_TRADE) { //General trade
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 300000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 200000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 100000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == CARPENTRY_OR_METAL) { //Capentry and metal
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 300000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 200000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 100000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == GARAGES) {  //Motor vehicle repair
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 350000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 250000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 100000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == HAIR_AND_BEAUTY_SALONS) {  //Hair and beauty salons
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 350000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 250000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 100000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == RESTAURANTS) {  //Resaurants
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 350000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 250000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 100000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == CLINICS) {  //Clinics
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 350000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 250000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 100000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type == DRUG_SHOPS) {  //Drag shops
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 300000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 200000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 100000;
+
+            } else {
+
+                $tax_payable = $this->error;
+
+            }
+
+        } elseif ($business_type != GENERAL_TRADE || CARPENTRY_OR_METAL ||
+            GARAGES || HAIR_AND_BEAUTY_SALONS || RESTAURANTS || CLINICS || DRUG_SHOPS
+        ) {  //Others
+
+            if ($gross_turnover > 35000000 && $gross_turnover <= 50000000) {
+
+                $tax_payable = 300000;
+
+            } elseif ($gross_turnover > 20000000 && $gross_turnover <= 35000000) {
+
+                $tax_payable = 250000;
+
+            } elseif ($gross_turnover > 10000000 && $gross_turnover <= 20000000) {
+
+                $tax_payable = 100000;
+
+            } else {
+
+                $tax_payable = $this->error;
+                
+            }
+
+        }
+
+        return $tax_payable;
+    }
+
+
 }
