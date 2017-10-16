@@ -43,8 +43,10 @@ class LoginController extends Controller
         $password = null;
 
         foreach ($users as $user){
-            $password = $user->password;
+            $password = $user->pass;
         }
+
+        //return $tin;
 
 
 
