@@ -192,6 +192,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li><a href="inbox.html"><i class="fa fa-envelope"></i>Inbox</a></li>
                             <li><a href="calendar.html"><i class="fa fa-calendar"></i>Calender</a></li>
                             <li><a href="inbox.html"><i class="fa fa-clipboard"></i>Tasks</a></li>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
                         </ul>
                     </li>
 

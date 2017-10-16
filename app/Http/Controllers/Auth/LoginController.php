@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,14 @@ class LoginController extends Controller
 
         $tin = $request->input('tin');
 
-        $password = "123456";
+        $users = User::where('tin',$tin)->get();
+
+        $password = null;
+
+        foreach ($users as $user){
+            $password = $user->password;
+        }
+
 
 
         if ($this->guard()->attempt(['tin' => $tin, 'password' => $password])) {
