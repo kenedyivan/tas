@@ -55,8 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!---->
 <div class="copy-right">
-    <p> &copy; 2016 Minimal. All Rights Reserved | Design by <a href="http://w3layouts.com/"
-                                                                target="_blank">W3layouts</a></p></div>
+    <p> &copy; 2017 TAS. All Rights Reserved | Design by </p></div>
 <!---->
 <!--scrolling js-->
 <script src="/js/jquery.nicescroll.js"></script>
