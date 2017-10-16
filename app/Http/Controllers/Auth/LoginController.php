@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -26,6 +27,31 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request){
+
+        $tin = $request->input('tin');
+
+        $password = "123456";
+
+
+        if ($this->guard()->attempt(['tin' => $tin, 'password' => $password])) {
+            // Authentication passed...
+            return redirect()->intended($this->redirectTo);
+        }
+
+        //return redirect()->back();
+
+        return $this->sendFailedLoginResponse($request);
+
+
+
+    }
 
     /**
      * Create a new controller instance.
