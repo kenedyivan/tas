@@ -36,3 +36,4 @@ Route::get('/preview-capture', 'CapturesController@capturePreview')->name('captu
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
