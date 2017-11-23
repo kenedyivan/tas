@@ -27,6 +27,10 @@ Route::get('/municipalities/{gross_turnover}/{business_type}', "PresumptiveTaxPa
 Route::get('/towns-and-trading-centers/{gross_turnover}/{business_type}', "PresumptiveTaxPayersController@townsAndTradingCenters");
 Route::get('/part3/{monthly_salary}', "NormalTaxPayersController@salaryTax");
 
+//Capture Routes
+Route::post('/process-capture', 'CapturesController@submitCaptures')->name('captures.submit');
+Route::get('/preview-capture', 'CapturesController@capturePreview')->name('capture.preview');
+
 
 //Auth::routes();
 
