@@ -15,20 +15,24 @@
     <div class="grid-form">
         <div class="grid-form1">
             <h3 id="forms-example" class="">Gross Return</h3>
-            <form>
+            <form method="post" action="{{route('captures.submit')}}" >
+                {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="start-stock">Start stock</label>
-                    <input type="text" class="form-control" id="start-stock" placeholder="Start stock">
+                    <label for="start-stock">Cost of monthly purchased stock</label>
+                    <input type="text" class="form-control"
+                    id="start-stock" name="price_of_initial_stock" placeholder="Cost of monthly purchased stock">
                 </div>
                 <div class="form-group">
-                    <label for="new-stock">New stock</label>
-                    <input type="text" class="form-control" id="new stock" placeholder="New stock">
+                    <label for="new-stock">Cost of remaining stock</label>
+                    <input type="text" class="form-control"
+                    id="new stock" name="price_of_new_stock" placeholder="Cost of remaining stock">
                 </div>
 
                 <button type="submit" class="btn btn-default">Calculate</button>
             </form>
         </div>
         <!----->
+    </div>
 
 @endsection
 

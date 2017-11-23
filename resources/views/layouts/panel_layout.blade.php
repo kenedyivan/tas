@@ -164,6 +164,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboards</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{route('capture.preview')}}" class=" hvr-bounce-to-right"><i
+                                        class="fa fa-dashboard nav_icon "></i><span class="nav-label">Captures</span>
+                            </a>
+                        </li>
 
 
                     </ul>
