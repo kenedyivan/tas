@@ -30,6 +30,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="/css/custom.css" rel="stylesheet">
     <script src="/js/custom.js"></script>
     <script src="/js/screenfull.js"></script>
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/datatables.net-bs/css/css/dataTables.bootstrap.min.css">
     <script>
         $(function () {
             $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
@@ -174,7 +177,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </div>
             </div>
+        </div>
     </nav>
+</div>
 
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="content-main">
@@ -190,5 +195,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="/js/scripts.js"></script>
 <!--//scrolling js-->
 <script src="/js/bootstrap.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- DataTables -->
+<script src="/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<!-- Datatable script -->
+<script>
+    $('div.alert').not('.alert-important').delay(2000).fadeOut(1500);
+
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })
+</script>
 </body>
 </html>
